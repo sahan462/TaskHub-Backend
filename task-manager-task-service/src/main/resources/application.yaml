@@ -1,0 +1,17 @@
+server:
+  port: 5001
+
+spring:
+  application:
+    name: TASK-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskManager-task-service
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
