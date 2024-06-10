@@ -1,0 +1,26 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: USER-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskManager
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
+
+#  spring.application.name=Online-Food-Ordering
+#  spring.datasource.url=jdbc:postgresql://localhost:5432/dineYard
+#  spring.datasource.username=postgres
+#  spring.datasource.password=password
+#
+#  #ddl = data definition language
+#  spring.jpa.hibernate.ddl-auto=update
+#  spring.jpa.show-sql=true
