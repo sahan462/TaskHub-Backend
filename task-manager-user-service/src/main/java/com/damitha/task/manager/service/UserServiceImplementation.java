@@ -1,6 +1,6 @@
 package com.damitha.task.manager.service;
 
-import com.damitha.task.manager.Repository.UserRepository;
+import com.damitha.task.manager.repository.UserRepository;
 import com.damitha.task.manager.config.JwtProvider;
 import com.damitha.task.manager.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

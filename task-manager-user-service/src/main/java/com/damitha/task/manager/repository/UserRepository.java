@@ -1,4 +1,4 @@
-package com.damitha.task.manager.Repository;
+package com.damitha.task.manager.repository;
 
 import com.damitha.task.manager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

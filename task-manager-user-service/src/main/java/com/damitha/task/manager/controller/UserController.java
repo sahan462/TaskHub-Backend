@@ -1,4 +1,4 @@
-package com.damitha.task.manager.Controller;
+package com.damitha.task.manager.controller;
 
 import com.damitha.task.manager.model.User;
 import com.damitha.task.manager.service.UserService;

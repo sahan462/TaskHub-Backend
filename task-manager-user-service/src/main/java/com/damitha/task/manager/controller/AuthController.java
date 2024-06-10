@@ -1,12 +1,11 @@
-package com.damitha.task.manager.Controller;
+package com.damitha.task.manager.controller;
 
-import com.damitha.task.manager.Repository.UserRepository;
-import com.damitha.task.manager.Requests.LoginRequest;
-import com.damitha.task.manager.Response.AuthResponse;
+import com.damitha.task.manager.repository.UserRepository;
+import com.damitha.task.manager.requests.LoginRequest;
+import com.damitha.task.manager.response.AuthResponse;
 import com.damitha.task.manager.config.JwtProvider;
 import com.damitha.task.manager.model.User;
 import com.damitha.task.manager.service.CustomerUserServiceImplementation;
-import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

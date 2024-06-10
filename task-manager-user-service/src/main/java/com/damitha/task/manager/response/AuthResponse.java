@@ -1,4 +1,4 @@
-package com.damitha.task.manager.Response;
+package com.damitha.task.manager.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
