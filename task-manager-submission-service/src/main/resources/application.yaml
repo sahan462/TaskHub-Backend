@@ -1,0 +1,17 @@
+server:
+  port: 5002
+
+spring:
+  application:
+    name: SUBMISSION-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskManager-submission-service
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+

@@ -9,14 +9,15 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.damitha</groupId>
-	<artifactId>task-manager-task-service</artifactId>
+	<artifactId>task-manager-submission-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>task-manager-task-service</name>
-	<description>Demo project for Spring Boot</description>
+	<name>task-manager-submission-service</name>
+	<description>submission service for task hub</description>
 	<properties>
 		<java.version>22</java.version>
 		<spring-cloud.version>2023.0.2</spring-cloud.version>
 	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -61,12 +62,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
