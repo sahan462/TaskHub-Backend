@@ -42,7 +42,7 @@ public class TaskController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Task>> getAllTasks(@RequestParam(required = false)TaskStatus status) throws Exception {
 
         List<Task> tasks = taskService.getAllTasks(status);
@@ -61,10 +61,10 @@ public class TaskController {
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<Object> deleteTask(@RequestBody Task task) throws Exception {
+    @DeleteMapping("/{taskId}")
+    public ResponseEntity<Object> deleteTask(@PathVariable String taskId) throws Exception {
 
-        taskService.deleteTask(task.getTaskId());
+        taskService.deleteTask(Integer.valueOf(taskId));
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
