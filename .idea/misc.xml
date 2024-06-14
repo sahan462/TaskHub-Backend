@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/task-manager-task-service/pom.xml" />
         <option value="$PROJECT_DIR$/task-manager-user-service/pom.xml" />
         <option value="$PROJECT_DIR$/task-manager-submission-service/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
       </list>
     </option>
   </component>
