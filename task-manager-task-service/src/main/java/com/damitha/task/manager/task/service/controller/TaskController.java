@@ -34,7 +34,7 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public ResponseEntity<Optional<Task>> getTaskById(@PathVariable String taskId) throws Exception {
+    public ResponseEntity<Optional<Task>> getTaskById(@PathVariable String taskId, @RequestHeader("Authorization") String jwt) throws Exception {
 
         Optional<Task> createdTask = taskService.getTaskById(Integer.valueOf(taskId));
 
@@ -43,7 +43,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks(@RequestParam(required = false)TaskStatus status) throws Exception {
+    public ResponseEntity<List<Task>> getAllTasks(@RequestParam(required = false)TaskStatus status, @RequestHeader("Authorization") String jwt) throws Exception {
 
         List<Task> tasks = taskService.getAllTasks(status);
 
@@ -73,7 +73,8 @@ public class TaskController {
     @PostMapping("/{taskId}/user/{userId}/assigned")
     public ResponseEntity<Task> assignedTaskToUser(
             @PathVariable Integer taskId,
-            @PathVariable Integer userId
+            @PathVariable Integer userId,
+            @RequestHeader("Authorization") String jwt
     ) throws Exception {
 
         Task assignedTask = taskService.assignedToUser(userId, taskId);
@@ -84,8 +85,9 @@ public class TaskController {
 
     @GetMapping("/user")
     public ResponseEntity<List<Task>> getAssignedUserTask(
-            @RequestHeader("Authorization") String jwt,
-            @RequestParam(required = false)TaskStatus status) throws Exception {
+            @RequestParam(required = false)TaskStatus status,
+            @RequestHeader("Authorization") String jwt
+    ) throws Exception {
 
         UserDto userProfile = userService.getUserProfile(jwt);
         List<Task> assignedTasks = taskService.assignedUserTasks(userProfile.getUserId(), status);
@@ -94,10 +96,10 @@ public class TaskController {
 
     }
 
-    @PostMapping("/complete")
-    public ResponseEntity<Task> completeTask(@RequestBody Task task) throws Exception {
+    @PutMapping ("/{taskId}/complete")
+    public ResponseEntity<Task> completeTask(@PathVariable String taskId, @RequestHeader("Authorization") String jwt) throws Exception {
 
-        Task completedTask = taskService.completeTask(task.getTaskId());
+        Task completedTask = taskService.completeTask(taskId);
 
         return new ResponseEntity<>(completedTask, HttpStatus.OK);
 

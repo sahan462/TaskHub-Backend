@@ -125,9 +125,9 @@ public class TaskServiceImplementation implements TaskService{
 
 
     @Override
-    public Task completeTask(Integer taskId) throws Exception {
+    public Task completeTask(String taskId) throws Exception {
         // Find the task by its ID
-        Optional<Task> existingTaskOptional = taskRepository.findById(taskId);
+        Optional<Task> existingTaskOptional = taskRepository.findById(Integer.valueOf(taskId));
 
         if (existingTaskOptional.isPresent()) {
             // Retrieve the task from the Optional

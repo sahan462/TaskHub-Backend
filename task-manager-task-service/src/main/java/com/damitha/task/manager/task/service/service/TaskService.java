@@ -17,6 +17,6 @@ public interface TaskService {
     public void deleteTask(Integer taskId) throws Exception;
     public Task assignedToUser(Integer userId, Integer taskId) throws Exception;
     public List<Task> assignedUserTasks(Integer userId, TaskStatus status) throws Exception;
-    public Task completeTask(Integer taskId) throws Exception;
+    public Task completeTask(String taskId) throws Exception;
 
 }

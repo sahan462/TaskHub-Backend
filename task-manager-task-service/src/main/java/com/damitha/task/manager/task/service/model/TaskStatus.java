@@ -2,9 +2,9 @@ package com.damitha.task.manager.task.service.model;
 
 public enum TaskStatus {
 
-    PENDING("pending"),
-    ASSIGNED("assigned"),
-    DONE("done");
+    PENDING("PENDING"),
+    ASSIGNED("ASSIGNED"),
+    DONE("DONE");
 
     private final String status;
 
