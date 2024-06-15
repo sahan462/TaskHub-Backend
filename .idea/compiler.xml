@@ -10,6 +10,7 @@
         <module name="task-manager" />
         <module name="task-manager-submission-service" />
         <module name="eureka-server" />
+        <module name="gateway" />
         <module name="task-manager-task-service" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka-server" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="task-manager" options="-parameters" />
       <module name="task-manager-submission-service" options="-parameters" />
       <module name="task-manager-task-service" options="-parameters" />
