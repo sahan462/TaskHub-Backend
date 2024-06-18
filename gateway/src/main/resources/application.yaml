@@ -6,21 +6,22 @@ spring:
     name: GATEWAY-SERVICE
   cloud:
     gateway:
-      routes:
-        - id: USER-SERVICE
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/auth/**, /users/**, /api/users/**
+      mvc:
+        routes:
+          - id: USER-SERVICE
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/auth/**, /users/**, /api/users/**
 
-        - id: TASK-SERVICE
-          uri: lb://TASK-SERVICE
-          predicates:
-            - Path=/api/tasks/**, /tasks/**
+          - id: TASK-SERVICE
+            uri: lb://TASK-SERVICE
+            predicates:
+              - Path=/api/tasks/**, /tasks/**
 
-        - id: SUBMISSION-SERVICE
-          uri: lb://SUBMISSION-SERVICE
-          predicates:
-            - Path=/api/submissions/**, /submissions/**
+          - id: SUBMISSION-SERVICE
+            uri: lb://SUBMISSION-SERVICE
+            predicates:
+              - Path=/api/submissions/**, /submissions/**
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin, Access-Control-Allow-Credentials # Removes duplicate headers
@@ -47,3 +48,4 @@ eureka:
     register-with-eureka: true
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
+
