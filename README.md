@@ -1,6 +1,6 @@
 # Task Hub Backend with Microservices
 
-Welcome to the backend repository of our groundbreaking Full Stack Project with Microservices! 🚀
+Welcome to the backend repository of Task Management Full Stack Project with Microservices! 🚀
 
 ## Tech Stack
 
