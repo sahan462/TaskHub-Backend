@@ -12,6 +12,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8087/realms/MyRealm
+          jwk-set-uri: http://localhost:8087/realms/MyRealm/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: TaskHub
+      principal-attribute: principal_username
 
 eureka:
   instance:

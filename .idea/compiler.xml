@@ -10,17 +10,8 @@
         <module name="task-manager" />
         <module name="task-manager-submission-service" />
         <module name="eureka-server" />
-        <module name="task-manager-task-service" />
-      </profile>
-      <profile name="Annotation profile for gateway" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/unknown/spring-boot-configuration-processor-unknown.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-        </processorPath>
         <module name="gateway" />
+        <module name="task-manager-task-service" />
       </profile>
     </annotationProcessing>
   </component>

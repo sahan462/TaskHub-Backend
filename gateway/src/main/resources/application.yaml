@@ -11,32 +11,73 @@ spring:
           - id: USER-SERVICE
             uri: lb://USER-SERVICE
             predicates:
-              - Path=/api/auth/**
-              - Path=/api/users/**
+              - Path=/auth/**, /user/**, /api/user/**
 
           - id: TASK-SERVICE
             uri: lb://TASK-SERVICE
             predicates:
-              - Path=/api/tasks/**
-              - Path=/tasks/**
+              - Path=/api/tasks/**, /tasks/**
 
           - id: SUBMISSION-SERVICE
             uri: lb://SUBMISSION-SERVICE
             predicates:
-              - Path=/api/submissions/**
-              - Path=/submissions/**
-  security:
-    oauth2:
-        resource-server:
-          jwt:
-            issuer-uri: http://localhost:8087/realms/MyRealm
-            jwk-set-uri: http://localhost:8087/realms/MyRealm/protocol/openid-connect/certs
-            principal-claim-name: sub
-jwt:
-  auth:
-    converter:
-      resource-id: TaskHub
-      principal-attribute: principal_username
+              - Path=/api/submissions/**, /submissions/**
+
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Origin, Access-Control-Allow-Credentials # Removes duplicate headers
+
+        globalcors:
+          corsConfigurations:
+            '[/**]':
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - OPTIONS
+              allowedHeaders:
+                - "*"
+              allowCredentials: true
+
+#server:
+#  port: 5000
+#
+#spring:
+#  application:
+#    name: GATEWAY-SERVICE
+#  cloud:
+#    gateway:
+#      mvc:
+#        routes:
+#          - id: USER-SERVICE
+#            uri: lb://USER-SERVICE
+#            predicates:
+#              - Path=/api/auth/**
+#              - Path=/api/user/**
+#
+#          - id: TASK-SERVICE
+#            uri: lb://TASK-SERVICE
+#            predicates:
+#              - Path=/api/tasks/**
+#              - Path=/tasks/**
+#
+#          - id: SUBMISSION-SERVICE
+#            uri: lb://SUBMISSION-SERVICE
+#            predicates:
+#              - Path=/api/submissions/**
+#              - Path=/submissions/**
+#  security:
+#    oauth2:
+#        resource-server:
+#          jwt:
+#            issuer-uri: http://localhost:8087/realms/MyRealm
+#            jwk-set-uri: http://localhost:8087/realms/MyRealm/protocol/openid-connect/certs
+#jwt:
+#  auth:
+#    converter:
+#      resource-id: TaskHub
+#      principal-attribute: principal_username
 
 eureka:
   instance:
@@ -52,7 +93,7 @@ logging:
     org:
       org.springframework.security.oauth2.server.resource: DEBUG
       springframework:
-        security: DEBUG
+        security: TRACE
 
 #server:
 #  port: 5000
