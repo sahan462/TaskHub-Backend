@@ -5,6 +5,7 @@ import com.damitha.task.manager.task.service.model.Task;
 import com.damitha.task.manager.task.service.model.TaskStatus;
 import com.damitha.task.manager.task.service.service.TaskService;
 import com.damitha.task.manager.task.service.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
@@ -25,9 +27,10 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task, @RequestHeader("Authorization") String jwt) throws Exception {
-        System.out.println("called");
-        UserDto userProfile = userService.getUserProfile(jwt);
-        Task createdTask = taskService.createTask(task, userProfile.getRole());
+        System.out.println("create task controller");
+        log.info("create task controller");
+//        UserDto userProfile = userService.getUserProfile(jwt);
+        Task createdTask = taskService.createTask(task, "roleAdmin");
 
         return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
 

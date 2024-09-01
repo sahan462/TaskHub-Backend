@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  keycloak:
+    container_name: taskhub_keycloak_container
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://host.docker.internal:5432/Keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: password
+    ports:
+      - "8087:8080"
+    networks:
+      - taskhub-network
+    restart: unless-stopped
+    command: [ "start-dev", "--import-realm" ]
+    volumes:
+      - ./keycloak/realms/:/opt/keycloak/data/import/
+      - ./keycloak/Theme2/:/opt/keycloak/providers/
+
+networks:
+  taskhub-network:
+    driver: bridge
+
+
+
+
+#  postgres:
+#    container_name: taskhub_postgres_container
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: root
+#      POSTGRES_DB: taskhub_db
+#    volumes:
+#      - ./taskhub_data:/var/lib/postgresql/data
+#    ports:
+#      - "5442:5432"
+#    networks:
+#      - taskhub-network
+#    restart: unless-stopped

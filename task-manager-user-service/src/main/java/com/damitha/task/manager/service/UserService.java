@@ -8,7 +8,9 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    public User getUserProfile(String jwt);
+    public User saveUser(User user);
+
+    public User getUserProfile(String email);
     public List<User> getAllUsers();
 
 }

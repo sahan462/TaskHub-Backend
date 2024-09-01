@@ -11,34 +11,32 @@ spring:
           - id: USER-SERVICE
             uri: lb://USER-SERVICE
             predicates:
-              - Path=/auth/**, /users/**, /api/users/**
+              - Path=/api/auth/**
+              - Path=/api/users/**
 
           - id: TASK-SERVICE
             uri: lb://TASK-SERVICE
             predicates:
-              - Path=/api/tasks/**, /tasks/**
+              - Path=/api/tasks/**
+              - Path=/tasks/**
 
           - id: SUBMISSION-SERVICE
             uri: lb://SUBMISSION-SERVICE
             predicates:
-              - Path=/api/submissions/**, /submissions/**
-
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin, Access-Control-Allow-Credentials # Removes duplicate headers
-
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
+              - Path=/api/submissions/**
+              - Path=/submissions/**
+  security:
+    oauth2:
+        resource-server:
+          jwt:
+            issuer-uri: http://localhost:8087/realms/MyRealm
+            jwk-set-uri: http://localhost:8087/realms/MyRealm/protocol/openid-connect/certs
+            principal-claim-name: sub
+jwt:
+  auth:
+    converter:
+      resource-id: TaskHub
+      principal-attribute: principal_username
 
 eureka:
   instance:
@@ -49,3 +47,83 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
 
+logging:
+  level:
+    org:
+      org.springframework.security.oauth2.server.resource: DEBUG
+      springframework:
+        security: DEBUG
+
+#server:
+#  port: 5000
+#
+#spring:
+#  application:
+#    name: GATEWAY-SERVICE
+#  cloud:
+#    gateway:
+#      mvc:
+#        routes:
+#          - id: USER-SERVICE
+#            uri: lb://USER-SERVICE
+#            predicates:
+#              - Path=/auth/**, /users/**, /api/users/**
+#
+#          - id: TASK-SERVICE
+#            uri: lb://TASK-SERVICE
+#            predicates:
+#              - Path=/api/tasks/**, /tasks/**
+#
+#          - id: SUBMISSION-SERVICE
+#            uri: lb://SUBMISSION-SERVICE
+#            predicates:
+#              - Path=/api/submissions/**, /submissions/**
+#
+#      default-filters:
+#        - DedupeResponseHeader=Access-Control-Allow-Origin, Access-Control-Allow-Credentials # Removes duplicate headers
+#
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#              - OPTIONS
+#            allowedHeaders:
+#              - "*"
+#            allowCredentials: true
+
+##spring:
+##  security:
+##    oauth2:
+##      resourceserver:
+##        jwt:
+##          issuer-uri: http://localhost:8086/realms/MyRealm
+##          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8070/eureka/
+#
+
+#      globals:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#              - OPTIONS
+#            allowedHeaders:
+#              - "*"
+#            allowCredentials: true
