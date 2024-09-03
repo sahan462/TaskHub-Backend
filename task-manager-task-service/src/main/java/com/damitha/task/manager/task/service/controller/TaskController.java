@@ -58,7 +58,7 @@ public class TaskController {
     public ResponseEntity<Task> updateTask(@RequestBody Task task, @RequestHeader("Authorization") String jwt) throws Exception {
 
         UserDto userProfile = userService.getUserProfile(jwt);
-        Task updatedTask = taskService.updateTask(task.getTaskId(), task, userProfile.getUserId());
+        Task updatedTask = taskService.updateTask(task.getTaskId(), task, Integer.valueOf(userProfile.getId()));
 
         return new ResponseEntity<>(updatedTask, HttpStatus.CREATED);
 
@@ -93,7 +93,7 @@ public class TaskController {
     ) throws Exception {
 
         UserDto userProfile = userService.getUserProfile(jwt);
-        List<Task> assignedTasks = taskService.assignedUserTasks(userProfile.getUserId(), status);
+        List<Task> assignedTasks = taskService.assignedUserTasks(Integer.valueOf(userProfile.getId()), status);
 
         return new ResponseEntity<>(assignedTasks, HttpStatus.OK);
 
