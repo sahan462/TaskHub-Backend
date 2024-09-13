@@ -54,6 +54,10 @@ public class User implements Serializable {
     @Column(name = "not_before", nullable = false)
     private int notBefore = 0;
 
+    @Column(name = "profile_picture")
+    private String profilePicture;
+
+
 }
 
 

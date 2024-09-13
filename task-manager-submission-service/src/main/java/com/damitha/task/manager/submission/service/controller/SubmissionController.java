@@ -30,7 +30,7 @@ public class SubmissionController {
     ) throws Exception{
 
         UserDto user = userService.getUserProfile(jwt);
-        Submission submission  = submissionService.submitTask(taskId, gitHubLink, user.getUserId(), jwt);
+        Submission submission  = submissionService.submitTask(taskId, gitHubLink, Integer.valueOf(user.getId()), jwt);
 
         return new ResponseEntity<>(submission, HttpStatus.OK);
 
